@@ -18,14 +18,20 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
         private List<SkeletonPoint> m_skeletonCalibPoints = new List<SkeletonPoint>(); //3d skeleton points
 
         private Matrix3D m_groundPlaneTransform; //step 2 transform
-        private Emgu.CV.Matrix<double> m_transform; //step 3 transform
+        private Emgu.CV.Mat m_transform; //step 3 transform
 
-        public PartialCalibrationClass()
+        public PartialCalibrationClass(KinectSensor sensor)
         {
-
+            m_kinectSensor = sensor;
         }
 
-        private void calibrate()
+        public void addCalibrationPoint(Point screenPoint, SkeletonPoint skeletonPoint)
+        {
+            m_calibPoints.Add(screenPoint);
+            m_skeletonCalibPoints.Add(skeletonPoint);
+        }
+
+        public void calibrate()
         {
             if (m_skeletonCalibPoints.Count == m_calibPoints.Count)
             {
@@ -68,8 +74,7 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
 
                 Emgu.CV.Mat transform = Emgu.CV.CvInvoke.GetPerspectiveTransform(src, dest);
 
-                m_transform = new Emgu.CV.Matrix<double>(transform.Rows, transform.Cols, transform.NumberOfChannels);
-                transform.CopyTo(m_transform);
+                m_transform = transform;
 
                 //test to see if resulting perspective transform is correct
                 //tResultx should be same as points in m_calibPoints
@@ -87,7 +92,7 @@ namespace Microsoft.Samples.Kinect.ControlsBasics
             return new Point3D(imgPt.X, imgPt.Y, imgPt.Depth);
         }
 
-        private Point kinectToProjectionPoint(SkeletonPoint point)
+        public Point kinectToProjectionPoint(SkeletonPoint point)
         {
             DepthImagePoint depthP = m_kinectSensor.CoordinateMapper.MapSkeletonPointToDepthPoint(point, DepthImageFormat.Resolution640x480Fps30);
             Point3D p = new Point3D(depthP.X, depthP.Y, depthP.Depth);
