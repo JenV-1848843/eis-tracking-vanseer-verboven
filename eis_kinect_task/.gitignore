@@ -1,0 +1,15 @@
+.vs/
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.pdb
+*.log
+*.nupkg
+*.snupkg
+[Pp]ackages/
+!**/[Pp]ackages/build/
+[Tt]est[Rr]esult*/
+*_wpftmp.csproj
