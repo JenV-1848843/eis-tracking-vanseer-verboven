@@ -93,12 +93,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="BoardLayout.cs" />
+    <Compile Include="BoardRenderer.cs" />
+    <Compile Include="FloorCalibration.cs" />
+    <Compile Include="GameForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
+    <Compile Include="GestureDetector.cs" />
+    <Compile Include="KinectTracker.cs" />
+    <Compile Include="OxoBoard.cs" />
+    <Compile Include="OxoGame.cs" />
+    <Compile Include="Symbol.cs" />
     <Compile Include="PartialCalibrationClass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
