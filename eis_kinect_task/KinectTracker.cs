@@ -6,6 +6,7 @@ namespace eis_kinect_task
     public class KinectTracker : IDisposable
     {
         private KinectSensor m_sensor = null;
+        // Bevat alle mogelijke skeletten van de personen in 1 frame
         private Skeleton[] m_skeletons = new Skeleton[0];
 
         public event Action<Skeleton> SkeletonUpdated;
@@ -40,6 +41,7 @@ namespace eis_kinect_task
             {
                 m_sensor.DepthStream.Enable(DepthImageFormat.Resolution640x480Fps30);
                 m_sensor.SkeletonStream.Enable();
+                // Als nieuwe skeletframe ready is roep deze methode op.
                 m_sensor.SkeletonFrameReady += Sensor_SkeletonFrameReady;
                 m_sensor.Start();
             }
@@ -56,6 +58,7 @@ namespace eis_kinect_task
 
         private void Sensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
         {
+            // Using zorgt dat de frame na het blok automatisch vrijgegeven wordt.
             using (SkeletonFrame frame = e.OpenSkeletonFrame())
             {
                 if (frame != null)

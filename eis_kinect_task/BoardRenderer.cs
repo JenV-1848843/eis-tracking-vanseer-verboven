@@ -12,6 +12,7 @@ namespace eis_kinect_task
             graphics.DrawString("Geen Kinect gevonden. Controleer voeding en USB.", font, Brushes.Black, 40, 12);
         }
 
+        // Tekent hoekpunten voor calibratie: grijs, geel of groene bolletjes.
         public void DrawCalibration(Graphics graphics, FloorCalibration calibration, bool userTracked, Font font)
         {
             System.Windows.Point[] targets = calibration.Targets;

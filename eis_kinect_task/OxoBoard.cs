@@ -4,6 +4,7 @@ namespace eis_kinect_task
     {
         public const int CellCount = 9;
 
+        // Lijnen van het vlak
         private static readonly int[,] s_lines = new int[,]
         {
             { 0, 1, 2 }, { 3, 4, 5 }, { 6, 7, 8 },

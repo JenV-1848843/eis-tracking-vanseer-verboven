@@ -8,7 +8,6 @@ namespace eis_kinect_task
     public class GameForm : Form
     {
         private const float BoardMargin = 40;
-
         private readonly KinectTracker m_tracker = new KinectTracker();
         private readonly OxoGame m_game = new OxoGame();
         private readonly BoardRenderer m_renderer = new BoardRenderer();
@@ -85,6 +84,7 @@ namespace eis_kinect_task
             base.OnFormClosing(e);
         }
 
+        // Wordt opgeroepen, ookal verandert de skeletframe niet
         private void Tracker_SkeletonUpdated(Skeleton skeleton)
         {
             m_user = skeleton;
